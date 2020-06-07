@@ -47,7 +47,7 @@ pipeline {
         }
       }
     }
-	  stage('build') {
+	  stage('building') {
       
       steps {
         sh 'echo success'
