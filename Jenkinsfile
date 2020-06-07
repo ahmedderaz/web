@@ -47,7 +47,6 @@ pipeline {
         }
       }
     }
-    
   post {
     failure {
       emailext(
