@@ -47,6 +47,11 @@ pipeline {
         }
       }
     }
+	  stage('build') {
+      
+      steps {
+        sh 'echo success'
+      }
   post {
     failure {
       emailext(
@@ -56,6 +61,7 @@ pipeline {
         to: "ahmedaly@afaqy.com"
       )
     }
+  }
   }
   }
 }	
