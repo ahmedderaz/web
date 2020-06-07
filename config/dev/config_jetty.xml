@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  ~ Copyright (c) 2019. Afaqy Company
+  ~ Mohammed ElAdly (mohammed.eladly@afaqy.com)
+  ~ All rights reserved.
+  -->
+
+<jettyConfiguration>
+    <jetty>
+        <ports>12151</ports>
+        <scan-package>com.afaqy.web_notifier.api</scan-package>
+        <micro-service-name>web-notifier</micro-service-name>
+        <enable-ssl>false</enable-ssl>
+        <certificate>
+            <path>/workdir/config/keystore</path>
+            <key-store-password>Afaqy@123</key-store-password>
+            <key-manager-password>Afaqy@123</key-manager-password>
+        </certificate>
+    </jetty>
+
+</jettyConfiguration>

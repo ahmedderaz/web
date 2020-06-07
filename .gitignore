@@ -1,0 +1,37 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.rar
+*.tar.gz
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# FOLDERS
+out
+out/logs
+target
+/logs
+
+# FILES
+nbactions.xml
+
+# extenstions
+*.idea
+*.orig
+*.project
+*.settings
+*.DS_Store
+*.classpath
+*.checkstyle
+*.iml
+/.idea/

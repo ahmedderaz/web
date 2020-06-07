@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<mainConfiguration>
+    <!--kafka configuration location-->
+    <xml fileName="./config_kafka.xml"/>
+
+    <!--NOTIFICATION configuration location-->
+    <xml fileName="./config_notifier.xml"/>
+
+    <!--    Jetty configuration-->
+    <xml fileName="./config_jetty.xml"/>
+
+</mainConfiguration>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<serverConfiguration>
+    <!-- SERVER CONFIG -->
+    <server>
+        <version>4.0</version>
+        <id>2</id>
+        <name>STAGE-AVL AFAQY.SA</name>
+        <privateIp>127.0.0.1</privateIp>
+        <publicIp>localhost</publicIp>
+        <solution>airport_taxi</solution>
+        <swagger>
+            <environment>local</environment>
+        </swagger>
+        <support>
+            <email>
+                <list>
+                    mohammed.eladly@afaqy.com, pro.elkady@gmail.com
+                </list>
+
+                <config>
+                    <host>mail.afaqy.sa</host>
+                    <port>25</port>
+                    <user>service@afaqy.sa</user>
+                    <pass>Afaqy@123</pass>
+                </config>
+            </email>
+
+
+        </support>
+    </server>
+
+    <slack>
+        <token>xoxp-165476576724-165476576820-187583145587-d0ff93fca15c899d68a3257b4c2b6803</token>
+        <channel>test-slack-notifier</channel>
+    </slack>
+</serverConfiguration>

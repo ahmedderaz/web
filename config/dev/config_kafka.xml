@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<KafkaConfiguration>
+    <kafka>
+        <topic>
+            <position>
+                <name>avl_dev_position_server1</name>
+                <deserializer>
+                    <key>org.apache.kafka.common.serialization.StringDeserializer</key>
+                    <value>com.afaqy.core.kafka.PositionDeserializer</value>
+                </deserializer>
+            </position>
+
+            <notification>
+                <name>avl_dev_notification</name>
+                <deserializer>
+                    <key>org.apache.kafka.common.serialization.StringDeserializer</key>
+                    <value>com.afaqy.core.kafka.deserializer.NotificationRecordDeserializer</value>
+                </deserializer>
+            </notification>
+        </topic>
+
+        <!-- Consumer Configs-->
+        <consumer>
+            <bootstrapServers>devavl.afaqy.sa:12001</bootstrapServers>
+            <sendBuffer>-1</sendBuffer>
+            <receiveBuffer>-1</receiveBuffer>
+            <maxPoolRecords>5000</maxPoolRecords>
+            <enableAutoCommit>true</enableAutoCommit>
+            <maxPartitionFetchBytes>1073741824</maxPartitionFetchBytes>
+            <maxPollIntervalMs>3600000</maxPollIntervalMs> <!-- 1 hour -->
+            <autoOffsetReset>latest</autoOffsetReset>
+            <notification>
+                <group>
+                    <id>avl_web_notifier</id>
+                    <enable>true</enable>
+                    <topic>${kafka.topic.notification.name}</topic>
+                    <keyDeserializer>${kafka.topic.notification.deserializer.key}</keyDeserializer>
+                    <valueDeserializer>${kafka.topic.notification.deserializer.value}</valueDeserializer>
+                </group>
+            </notification>
+
+            <position>
+                <group>
+                    <id>avl_web_notifier</id>
+                    <enable>true</enable>
+                    <topic>${kafka.topic.position.name}</topic>
+                    <topics>${kafka.topic.position.name}</topics>
+                    <keyDeserializer>${kafka.topic.position.deserializer.key}</keyDeserializer>
+                    <valueDeserializer>${kafka.topic.position.deserializer.value}</valueDeserializer>
+                </group>
+            </position>
+
+        </consumer>
+    </kafka>
+</KafkaConfiguration>

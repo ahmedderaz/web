@@ -1,0 +1,1 @@
+mvn clean compile package install --also-make -Drevision=2.8.15

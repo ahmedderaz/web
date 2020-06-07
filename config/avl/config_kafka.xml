@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+  ~ Copyright (c) 2019. Afaqy Company
+  ~ Mohammed ElAdly (mohammed.eladly@afaqy.com)
+  ~ All rights reserved.
+  -->
+
+<KafkaConfiguration>
+    <kafka>
+        <topic>
+            <position>
+                <name>avlv2_position_server1</name>
+                <deserializer>
+                    <key>org.apache.kafka.common.serialization.StringDeserializer</key>
+                    <value>com.afaqy.core.kafka.PositionDeserializer</value>
+                </deserializer>
+            </position>
+
+            <notification>
+                <name>avlv2_notification</name>
+                <deserializer>
+                    <key>org.apache.kafka.common.serialization.StringDeserializer</key>
+                    <value>com.afaqy.core.kafka.deserializer.NotificationRecordDeserializer</value>
+                </deserializer>
+            </notification>
+        </topic>
+
+        <!-- Consumer Configs-->
+        <consumer>
+            <sendBuffer>-1</sendBuffer>
+            <receiveBuffer>-1</receiveBuffer>
+            <maxPoolRecords>5000</maxPoolRecords>
+            <enableAutoCommit>true</enableAutoCommit>
+            <bootstrapServers>kafka1.afaqy.in:12201,kafka2.afaqy.in:12201,kafka3.afaqy.in:12201</bootstrapServers>
+            <maxPartitionFetchBytes>1073741824</maxPartitionFetchBytes>
+            <maxPollIntervalMs>3600000</maxPollIntervalMs> <!-- 1 hour -->
+            <autoOffsetReset>latest</autoOffsetReset>
+
+            <notification>
+                <group>
+                    <index>${server.id}</index>
+                    <id>web_notifier</id>
+                    <enable>true</enable>
+                    <topic>${kafka.topic.notification.name}</topic>
+                    <keyDeserializer>${kafka.topic.notification.deserializer.key}</keyDeserializer>
+                    <valueDeserializer>${kafka.topic.notification.deserializer.value}</valueDeserializer>
+                </group>
+            </notification>
+
+            <position>
+                <group>
+                    <topics>avlv2_position_server1,avlv2_position_server2</topics>
+                    <index>${server.id}</index>
+                    <id>web_notifier</id>
+                    <enable>true</enable>
+                    <topic>${kafka.topic.position.name}</topic>
+                    <keyDeserializer>${kafka.topic.position.deserializer.key}</keyDeserializer>
+                    <valueDeserializer>${kafka.topic.position.deserializer.value}</valueDeserializer>
+                </group>
+            </position>
+
+        </consumer>
+    </kafka>
+</KafkaConfiguration>

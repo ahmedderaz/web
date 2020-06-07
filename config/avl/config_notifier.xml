@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+
+<!--Keep if we need to stop/start web notifier in runtime-->
+<notifierConfiguration>
+    <!-- SERVER CONFIG -->
+    <server>
+        <version>avl:2.12.2</version>
+        <id>1</id>
+        <name>AFAQY AVL</name>
+        <privateIp>10.10.23.124</privateIp>
+        <publicIp>avlservice.afaqy.sa</publicIp>
+        <swagger>
+            <environment>avl</environment>
+        </swagger>
+        <support>
+            <email>
+                <list>
+                    dawoudesmaeil@gmail.com,dsa@afaqy.com,elkady@afaqy.com,pro.elkady@gmail.com
+                </list>
+
+                <config>
+                    <host>mail.afaqy.sa</host>
+                    <port>25</port>
+                    <user>service@afaqy.sa</user>
+                    <pass>Afaqy@123</pass>
+                </config>
+            </email>
+
+            <slack>
+                <token>xoxp-165476576724-165476576820-187583145587-d0ff93fca15c899d68a3257b4c2b6803</token>
+                <channel>servers</channel>
+            </slack>
+        </support>
+    </server>
+
+    <notifier>
+        <web>
+            <enable>true</enable>
+        </web>
+    </notifier>
+
+    <database>
+        <mongo>
+            <master-uri>mongodb://avlmdb.afaqy.sa:27017,avlmdbr.afaqy.sa:27017/afaqy_avl?replicaSet=AFAQY_AVL_MASTERDB&amp;maxPoolSize=10000&amp;retryWrites=true</master-uri>
+        </mongo>
+    </database>
+    <redis>
+        <!--    <uri>redis://password@localhost:6379/0</uri>-->
+        <uri>redis://web-notifier-redis:6379</uri>
+        <modulePrefix>
+            WEB_NOTIFIER_
+        </modulePrefix>
+    </redis>
+</notifierConfiguration>

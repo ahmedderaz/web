@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<KafkaConfiguration>
+    <kafka>
+        <topic>
+            <position>
+                <name>avl_stage_position_server1</name>
+                <deserializer>
+                    <key>org.apache.kafka.common.serialization.StringDeserializer</key>
+                    <value>com.afaqy.avl.core.serialization.kafka.PositionDeserializer</value>
+                </deserializer>
+            </position>
+            <taxiTripCost>
+                <name>taxi_trip_cost_calculation_output</name>
+                <deserializer>
+                    <key>org.apache.kafka.common.serialization.StringDeserializer</key>
+                    <value>org.apache.kafka.common.serialization.StringDeserializer</value>
+                </deserializer>
+            </taxiTripCost>
+            <notification>
+                <name>avl_stage_notification</name>
+                <deserializer>
+                    <key>org.apache.kafka.common.serialization.StringDeserializer</key>
+                    <value>com.afaqy.avl.webnotifier.kafka.deserializer.NotificationRecordDeserializer</value>
+                </deserializer>
+            </notification>
+        </topic>
+        <producer>
+            <bootstrapServers>devavl.afaqy.sa:12001</bootstrapServers>
+        </producer>
+        <!-- Consumer Configs-->
+        <consumer>
+            <sendBuffer>-1</sendBuffer>
+            <receiveBuffer>-1</receiveBuffer>
+            <maxPoolRecords>200</maxPoolRecords>
+            <enableAutoCommit>false</enableAutoCommit>
+            <bootstrapServers>stageavl.afaqy.sa:12001</bootstrapServers>
+            <maxPartitionFetchBytes>1073741824</maxPartitionFetchBytes>
+            <maxPollIntervalMs>5000</maxPollIntervalMs>
+            <autoOffsetReset>latest</autoOffsetReset>
+            <notification>
+                <group>
+                    <id>stage_web_notifier_notification_adly</id>
+                    <enable>true</enable>
+                    <topic>${kafka.topic.notification.name}</topic>
+                    <keyDeserializer>${kafka.topic.notification.deserializer.key}</keyDeserializer>
+                    <valueDeserializer>${kafka.topic.notification.deserializer.value}</valueDeserializer>
+                </group>
+            </notification>
+
+            <position>
+                <group>
+                    <id>stage_web_notifier_positions_adly</id>
+                    <enable>true</enable>
+                    <topic>${kafka.topic.position.name}</topic>
+                    <keyDeserializer>${kafka.topic.position.deserializer.key}</keyDeserializer>
+                    <valueDeserializer>${kafka.topic.position.deserializer.value}</valueDeserializer>
+                </group>
+            </position>
+
+            <taxiTripCost>
+                <group>
+                    <id>local_taxi_trip_cost</id>
+                    <enable>true</enable>
+                    <topic>${kafka.topic.taxiTripCost.name}</topic>
+                    <keyDeserializer>${kafka.topic.taxiTripCost.deserializer.key}</keyDeserializer>
+                    <valueDeserializer>${kafka.topic.taxiTripCost.deserializer.value}</valueDeserializer>
+                </group>
+            </taxiTripCost>
+        </consumer>
+    </kafka>
+</KafkaConfiguration>

@@ -1,0 +1,119 @@
+<!--
+  ~ Copyright (c) 2019. Afaqy Company
+  ~ Mohammed ElAdly (mohammed.eladly@afaqy.com)
+  ~ All rights reserved.
+  -->
+
+<Configuration monitorInterval="30" name="Web Notifier Service">
+    <Properties>
+        <Property name="logFolder">
+            /workdir/logs/
+        </Property>
+        <Property name="defaultPattern">
+            %highlight{%d{DEFAULT_MICROS} %-5level %logger{1} - %msg%n%throwable}
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${defaultPattern}"/>
+        </Console>
+        <!--ERROR-->
+        <RollingFile name="ERROR" fileName="${logFolder}/error.log" filePattern="${logFolder}/old/error.%i.log.gz">
+            <PatternLayout pattern="${defaultPattern}"/>
+            <LevelRangeFilter minLevel="FATAL" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <Policies>
+                <!--<OnStartupTriggeringPolicy/>-->
+                <CronTriggeringPolicy schedule="0 0 12 1/1 * ? *" evaluateOnStartup="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+
+        <!--SERVICE-->
+        <RollingFile name="SERVICE" fileName="${logFolder}/service.log"
+                     filePattern="${logFolder}/old/service.%i.log.gz">
+            <PatternLayout pattern="${defaultPattern}"/>
+            <LevelRangeFilter minLevel="WARN" maxLevel="ALL" onMatch="ACCEPT" onMismatch="DENY"/>
+
+            <Policies>
+                <!--<OnStartupTriggeringPolicy/>-->
+                <CronTriggeringPolicy schedule="0 0 0 1/1 * ? *" evaluateOnStartup="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+
+        <!--KAFKA-->
+        <RollingFile name="KAFKA" fileName="${logFolder}/kafka.log" filePattern="${logFolder}/old/kafka.%i.log.gz">
+            <PatternLayout pattern="${defaultPattern}"/>
+            <LevelRangeFilter minLevel="WARN" maxLevel="ALL" onMatch="ACCEPT" onMismatch="DENY"/>
+
+            <Policies>
+                <!--<OnStartupTriggeringPolicy/>-->
+                <CronTriggeringPolicy schedule="0 0 0 1/1 * ? *" evaluateOnStartup="true"/>
+            </Policies>
+        </RollingFile>
+
+        <!--HTTP-->
+        <RollingFile name="HTTP" fileName="${logFolder}/http.log" filePattern="${logFolder}/old/http.%i.log.gz">
+            <PatternLayout pattern="${defaultPattern}"/>
+            <LevelRangeFilter minLevel="WARN" maxLevel="ALL" onMatch="ACCEPT" onMismatch="DENY"/>
+            <Policies>
+                <!--<OnStartupTriggeringPolicy/>-->
+                <CronTriggeringPolicy schedule="0 0 0 1/1 * ? *" evaluateOnStartup="true"/>
+            </Policies>
+        </RollingFile>
+
+        <!--JETTY-->
+        <RollingFile name="HTTP" fileName="${logFolder}/jetty.log" filePattern="${logFolder}/old/jetty.%i.log.gz">
+            <PatternLayout pattern="${defaultPattern}"/>
+            <LevelRangeFilter minLevel="WARN" maxLevel="ALL" onMatch="ACCEPT" onMismatch="DENY"/>
+            <Policies>
+                <!--<OnStartupTriggeringPolicy/>-->
+                <CronTriggeringPolicy schedule="0 0 0 1/1 * ? *" evaluateOnStartup="true"/>
+            </Policies>
+        </RollingFile>
+
+        <SMTP name="MAIL"
+              subject="Receiver Service Error"
+              to="elkady@afaqy.com,pro.elkady@gmail.com,dawoudesmaeil@gmail.com,dsa@afaqy.com"
+              from="service@afaqy.info"
+              smtpHost="mail.afaqy.info"
+              smtpUsername="service@afaqy.info"
+              smtpPassword="P@ssW0rd&#38;987"
+              smtpPort="25" bufferSize="20"
+              ignoreExceptions="false">
+            <ThresholdFilter level="FATAL"  onMatch="ACCEPT" onMismatch="DENY"/>
+        </SMTP>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.afaqy" additivity="false" level="ALL">
+            <AppenderRef ref="SERVICE"/>
+            <AppenderRef ref="ERROR"/>
+            <!--<AppenderRef ref="MAIL"/>-->
+        </Logger>
+        <AsyncLogger name="com.afaqy.core.kafka" additivity="false" level="ALL">
+            <AppenderRef ref="KAFKA"/>
+            <AppenderRef ref="ERROR"/>
+            <!--<AppenderRef ref="MAIL"/> -->
+        </AsyncLogger>
+        <AsyncLogger name="com.afaqy.web_notifier.kafka" additivity="false" level="ALL">
+            <AppenderRef ref="KAFKA"/>
+            <AppenderRef ref="ERROR"/>
+            <!--<AppenderRef ref="MAIL"/> -->
+        </AsyncLogger>
+        <AsyncLogger name="com.afaqy.web_notifier.api" additivity="false" level="ALL">
+            <AppenderRef ref="HTTP"/>
+            <AppenderRef ref="ERROR"/>
+            <!--<AppenderRef ref="MAIL"/> -->
+        </AsyncLogger>
+
+        <AsyncLogger name="org.eclipse" additivity="false" level="ALL">
+            <AppenderRef ref="JETTY"/>
+            <AppenderRef ref="ERROR"/>
+            <!--<AppenderRef ref="MAIL"/> -->
+        </AsyncLogger>
+
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

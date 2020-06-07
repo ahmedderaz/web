@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+
+<!--Keep if we need to stop/start web notifier in runtime-->
+<notifierConfiguration>
+    <!-- SERVER CONFIG -->
+    <server>
+        <version>0.1.2</version>
+        <id>1</id>
+        <name>STAGE-AVL AFAQY.SA</name>
+        <privateIp>10.10.23.122</privateIp>
+        <publicIp>212.70.49.111</publicIp>
+        <swagger>
+            <environment>stage</environment>
+        </swagger>
+        <support>
+            <email>
+                <list>
+                    mohammed.eladly@afaqy.com, pro.elkady@gmail.com
+                </list>
+
+                <config>
+                    <host>mail.afaqy.sa</host>
+                    <port>25</port>
+                    <user>service@afaqy.sa</user>
+                    <pass>Afaqy@123</pass>
+                </config>
+            </email>
+
+            <slack>
+                <token>xoxp-165476576724-165476576820-187583145587-d0ff93fca15c899d68a3257b4c2b6803</token>
+                <channel>service-notifications</channel>
+            </slack>
+
+        </support>
+    </server>
+
+    <notifier>
+        <web>
+            <enable>true</enable>
+        </web>
+    </notifier>
+    <!-- DATABASE CONFIG -->
+    <database>
+        <mongo>
+            <master-uri>mongodb://stageavl.afaqy.sa:27017/afaqy_avl?maxPoolSize=10000&amp;retryWrites=true</master-uri>
+        </mongo>
+        <redis>
+            <host>web-notifier-redis</host>
+            <port>6379</port>
+        </redis>
+    </database>
+
+    <slack>
+        <token>xoxp-165476576724-165476576820-187583145587-d0ff93fca15c899d68a3257b4c2b6803</token>
+        <channel>test-slack-notifier</channel>
+    </slack>
+
+    <cache>
+        <redis>
+            <hosts>web-notifier-redis:6379</hosts>
+        </redis>
+    </cache>
+
+
+</notifierConfiguration>

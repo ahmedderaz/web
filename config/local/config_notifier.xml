@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+
+<!--Keep if we need to stop/start web notifier in runtime-->
+<notifierConfiguration>
+    <notifier>
+        <web>
+            <enable>true</enable>
+        </web>
+    </notifier>
+    <!-- DATABASE CONFIG -->
+    <database>
+        <mongo>
+            <master-uri>mongodb://localhost:27017/afaqy_avl</master-uri>
+        </mongo>
+        <saveOriginal>true</saveOriginal>
+        <refreshDelay>300</refreshDelay>
+        <ignoreUnknown>false</ignoreUnknown>
+        <registerUnknown>true</registerUnknown>
+    </database>
+    <cache>
+        <redis>
+            <hosts>
+                localhost:6379
+            </hosts>
+        </redis>
+    </cache>
+
+</notifierConfiguration>
