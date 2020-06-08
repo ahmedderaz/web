@@ -1,5 +1,5 @@
 pipeline {
-  agent none
+ 
 
   environment {
     MAJOR_VERSION = 1
@@ -8,9 +8,7 @@ pipeline {
 
   stages {
      stage('Build Docker Image') {
-            when {
-                branch 'stage'
-            }
+            
             steps {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
@@ -18,9 +16,7 @@ pipeline {
             }
         }
     stage('Push Docker Image') {
-            when {
-                branch 'master'
-            }
+            
             steps {
                 script { 
                    docker.withRegistry('https://registry.hub.docker.com', 'hub') {
