@@ -1,5 +1,8 @@
 pipeline {
- 
+	agent any
+options {
+	buildDiscarder logRotator(daysToKeepStr: '5', numToKeepStr: '6')
+	} 
 
   environment {
     MAJOR_VERSION = 1
