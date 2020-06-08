@@ -14,7 +14,7 @@ options {
             
             steps {
 		    
-                sh 'mvn 'build'
+                sh 'mvn build'
 		  sh 'docker build  -f docker/stage/Dockerfile -t ahmedderaz/web-notifier-2.9.16 .'
                   //  app = docker.build DOCKER_IMAGE_NAME + -f "docker/stage/Dockerfile"
                 
