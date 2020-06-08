@@ -14,7 +14,7 @@ options {
             
             steps {
                 script {
-		  docker.	
+		  	
                     app = docker.build  -f "docker/stage/Dockerfile" DOCKER_IMAGE_NAME
                 }
             }
