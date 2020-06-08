@@ -13,10 +13,10 @@ options {
      stage('Build Docker Image') {
             
             steps {
-                script {
-		  	
-                    app = docker.build DOCKER_IMAGE_NAME + -f "docker/stage/Dockerfile"
-                }
+                
+		  sh 'docker build -t ahmedderaz/web-notifier -f docker/stage/Dockerfile
+                  //  app = docker.build DOCKER_IMAGE_NAME + -f "docker/stage/Dockerfile"
+                
             }
         }
     stage('Push Docker Image') {
