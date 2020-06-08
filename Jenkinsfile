@@ -14,7 +14,7 @@ options {
             
             steps {
                 script {
-                    app = docker.build -f docker/stage/Dockerfile -t DOCKER_IMAGE_NAME
+                    app = docker.build + -f docker/stage/Dockerfile + -t DOCKER_IMAGE_NAME
                 }
             }
         }
