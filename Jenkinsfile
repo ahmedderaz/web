@@ -14,7 +14,7 @@ options {
             
             steps {
                 
-		  sh 'docker build -t ahmedderaz/web-notifier -f docker/stage/Dockerfile'
+		  sh 'docker build  -f docker/stage/Dockerfile -t ahmedderaz/web-notifier'
                   //  app = docker.build DOCKER_IMAGE_NAME + -f "docker/stage/Dockerfile"
                 
             }
