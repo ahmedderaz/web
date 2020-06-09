@@ -17,7 +17,7 @@ WORKDIR /workdir/
 COPY config/stage/ config/
 
 # Copy jars
-COPY out/ libs/
+#COPY out/ libs/
 
 # Update jar timestamp
 RUN sh -c 'touch /workdir/libs/Afaqy-AVL-WebNotifier.jar'
