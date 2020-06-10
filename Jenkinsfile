@@ -13,7 +13,7 @@ options {
      stage('Build Docker Image') {
             
             steps {
-		    
+		  sh 'mvn clean compile package install '  
 		  sh 'docker build  -f docker/stage/Dockerfile -t ahmedderaz/web-notifier-2.9.16 .'
                   //  app = docker.build DOCKER_IMAGE_NAME + -f "docker/stage/Dockerfile"
                 
