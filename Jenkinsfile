@@ -22,6 +22,7 @@ options {
     stage('Push Docker Image') {
             
             steps {
+		    sh 'docker logout'
                 script { 
                    docker.withRegistry('https://registry.hub.docker.com', 'hub') {
                         app.push("${env.BUILD_NUMBER}")
