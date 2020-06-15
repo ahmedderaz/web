@@ -14,7 +14,7 @@ options {
             
             steps {
 		  sh 'mvn clean -Dmaven.javadoc.skip=true verify compile package install '  
-		  sh 'docker build  -f docker/stage/Dockerfile -t avljenkins/web-notifier- .'
+		  sh 'docker build  -f docker/stage/Dockerfile -t avljenkins/web-notifier .'
                   //  app = docker.build DOCKER_IMAGE_NAME + -f "docker/stage/Dockerfile"
                 
             }
