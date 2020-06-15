@@ -6,7 +6,7 @@ options {
 
   environment {
     MAJOR_VERSION = 1
-	 DOCKER_IMAGE_NAME = "ahmedderaz/web-notifier"
+	 DOCKER_IMAGE_NAME = "avljenkins/web-notifier"
   }
 
   stages {
@@ -14,7 +14,7 @@ options {
             
             steps {
 		  sh 'mvn clean -Dmaven.javadoc.skip=true verify compile package install '  
-		  sh 'docker build  -f docker/stage/Dockerfile -t ahmedderaz/web-notifier-2.9.16 .'
+		  sh 'docker build  -f docker/stage/Dockerfile -t avljenkins/web-notifier-2.9.16 .'
                   //  app = docker.build DOCKER_IMAGE_NAME + -f "docker/stage/Dockerfile"
                 
             }
