@@ -15,9 +15,11 @@ options {
             steps {
 		  sh 'mvn clean -Dmaven.javadoc.skip=true verify compile package install '  
 		  sh 'cp docker/stage/Dockerfile .'
+		    script {
                     app = docker.build(DOCKER_IMAGE_NAME) 
                 
             }
+	    }		    
         }
     stage('Push Docker Image') {
             
