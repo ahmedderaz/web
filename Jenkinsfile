@@ -40,7 +40,7 @@ options {
             
             steps {
                 script { 
-		   withDockerServer([uri: "tcp://<hub.eg.afaqy.co-socket>"]) {	
+		   //withDockerServer([uri: "tcp://<hub.eg.afaqy.co-socket>"]) {	
                   // docker.withRegistry('https://hub.eg.afaqy.co') 
 	            withDockerRegistry([credentialsId: 'afaqy-hub', url: "https://<hub.eg.afaqy.co>/"]) {		   
 			   ams.push("${env.BUILD_NUMBER}")
@@ -48,7 +48,7 @@ options {
                    
 				   }
                 }
-		}
+	//	}
             }
 	    }
     stage('build') {
