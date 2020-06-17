@@ -40,7 +40,7 @@ options {
             
             steps {
                 script { 
-                   docker.withRegistry('https://hub.eg.afaqy.co', 'afqy-hub') 
+                   docker.withRegistry('https://hub.eg.afaqy.co') 
 			   ams.push("${env.BUILD_NUMBER}")
                         ams.push("latest")
                    
