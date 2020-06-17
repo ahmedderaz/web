@@ -42,7 +42,7 @@ options {
                 script { 
 		   withDockerServer([uri: "tcp://<hub.eg.afaqy.co-socket>"]) {	
                   // docker.withRegistry('https://hub.eg.afaqy.co') 
-	            withDockerRegistry([credentialsId: 'afaqy-hub', url: "https://<hub.eg.afaqy.co-registry>/"]) {		   
+	            withDockerRegistry([credentialsId: 'afaqy-hub', url: "https://<hub.eg.afaqy.co>/"]) {		   
 			   ams.push("${env.BUILD_NUMBER}")
                         ams.push("latest")
                    
