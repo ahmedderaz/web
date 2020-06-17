@@ -49,7 +49,7 @@ options {
 				   }
                 }
             }
-        
+	    }
     stage('build') {
       
       steps {
