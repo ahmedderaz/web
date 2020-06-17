@@ -48,6 +48,7 @@ options {
                    
 				   }
                 }
+		}
             }
 	    }
     stage('build') {
@@ -83,5 +84,4 @@ options {
   }
   }
   }
-  }
-}
+  
