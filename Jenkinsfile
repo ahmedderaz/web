@@ -7,6 +7,7 @@ options {
   environment {
     MAJOR_VERSION = 1
 	 DOCKER_IMAGE_NAME = "avljenkins/web-notifier"
+	  AFAQY_IMAGE_NAME = "hub.eg.afaqy.co/java/web-notifier"
   }
 
   stages {
@@ -17,6 +18,7 @@ options {
 		  sh 'cp docker/stage/Dockerfile .'
 		    script {
                     app = docker.build(DOCKER_IMAGE_NAME) 
+	            img = docker.build(AFAQY_IMAGE_NAME)		    
                 
             }
 	    }		    
@@ -37,11 +39,10 @@ options {
 	  stage('Push Afaqy Image') {
             
             steps {
-		sh 'docker tag avljenkins/web-notifier  hub.eg.afaqy.co/java/web-notifier'
                 script { 
                    docker.withRegistry('https://hub.eg.afaqy.co', 'afqy-hub') 
-			   app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
+			   ams.push("${env.BUILD_NUMBER}")
+                        ams.push("latest")
                    
 				   }
                 }
