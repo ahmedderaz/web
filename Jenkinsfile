@@ -34,6 +34,19 @@ options {
                 }
             }
         }
+	  stage('Push Afaqy Image') {
+            
+            steps {
+		sh 'docker tag avljenkins/web-notifier  hub.eg.afaqy.co/java/web-notifier'
+                script { 
+                   docker.withRegistry('https://hub.eg.afaqy.co', 'afqy-hub') 
+			   app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
+                   
+				   }
+                }
+            }
+        }
     stage('build') {
       
       steps {
