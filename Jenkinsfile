@@ -42,9 +42,10 @@ options {
                 script { 
 		   //withDockerServer([uri: "tcp://<hub.eg.afaqy.co-socket>"]) {	
                   // docker.withRegistry('https://hub.eg.afaqy.co') 
-	            withDockerRegistry([credentialsId: 'afaqy-hub', url: "https://<hub.eg.afaqy.co>/"]) {		   
-			   ams.push("${env.BUILD_NUMBER}")
-                        ams.push("latest")
+	            withRegistry('https://hub.eg.afaqy.co', 'afaqy-hub ) {
+			 def customImage = docker.build("AFAQY_IMAGE_NAME:${env.BUILD_ID}")	 
+			   customImage.push()
+                         customImage.push("latest")
                    
 				   }
                 }
