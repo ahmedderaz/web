@@ -57,8 +57,17 @@ options {
         script 
 {
     sh """ssh -tt ahmed@192.168.40.165 "app=$AFAQY_IMAGE_NAME" << EOF 
-    docker pull $app:latest
-    docker run hello-world --name web-notifier
+    docker pull avljenkins/web-notifier:latest
+    docker network create web-notifier
+   docker container run \
+  -d \
+  -p 12154:12151 \
+  --network web-notifier \
+  -e AFAQY_SOLUTION=airport_taxi \
+  --restart unless-stopped \
+  --name taxi-web-notifier \
+  -v /afaqylogs/avlservice/taxi-web-notifier:/workdir/logs \
+  avljenkins/web-notifier:latest
     exit
     EOF"""
 }
