@@ -56,7 +56,7 @@ options {
       steps {
         script 
 {
-    sh """ssh -tt ahmed@192.168.40.165 "app=$AFAQY_IMAGE_NAME" << EOF 
+    sh """ssh -tt ahmed@192.168.40.165  << EOF 
     docker pull avljenkins/web-notifier:latest
     docker network create web-notifier
    docker container run \
