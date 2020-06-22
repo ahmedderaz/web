@@ -52,10 +52,15 @@ options {
 	//	}
             }
 	    }
-    stage('build') {
+    stage('Deploy To Stage') {
       
       steps {
-        sh 'echo success'
+        sh 'ssh -t -t -o StrictHostKeyChecking=no ahmed@192.168.40.265 "hub=$AFAQY_IMAGE_NAME" ' '
+	      docker pull $hub:latest
+	      docker stop web-notifier
+	      docker rmi web-notifier
+	      '
+	      
       }
       post {
         success {
