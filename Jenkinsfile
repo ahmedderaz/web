@@ -55,11 +55,14 @@ options {
     stage('Deploy To Stage') {
       
       steps {
-        ssh -t -t  ahmed@192.168.40.265 "hub=$AFAQY_IMAGE_NAME" ' 
-	      docker pull $hub:latest
-	      docker stop web-notifier
-	      docker rmi web-notifier
-	      '
+        script 
+{
+    sh """ssh -tt ahmed@192.168.40.165 "app=$AFAQY_IMAGE_NAME" << EOF 
+    docker pull $app:latest
+    docker run hello-world --name web-notifier
+    exit
+    EOF"""
+}
 	      
       }
       post {
