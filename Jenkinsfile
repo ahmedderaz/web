@@ -55,7 +55,7 @@ options {
     stage('Deploy To Stage') {
       
       steps {
-        ssh -t -t -o StrictHostKeyChecking=no ahmed@192.168.40.265 "hub=$AFAQY_IMAGE_NAME" ' 
+        ssh -t -t  ahmed@192.168.40.265 "hub=$AFAQY_IMAGE_NAME" ' 
 	      docker pull $hub:latest
 	      docker stop web-notifier
 	      docker rmi web-notifier
