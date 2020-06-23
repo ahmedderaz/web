@@ -6,7 +6,7 @@ options {
 
   environment {
     MAJOR_VERSION = 1
-	 DOCKER_IMAGE_NAME = "avljenkins/web-notifier"
+	 DOCKER_IMAGE_NAME = "avljenkins/web-notifier:stage-2.8.15"
 	  AFAQY_IMAGE_NAME = "hub.eg.afaqy.co/java/web-notifier"
   }
 
@@ -57,17 +57,16 @@ options {
         script 
 {
     sh """ssh -tt ahmed@192.168.40.165  << EOF 
-    docker pull avljenkins/web-notifier:latest
-    docker network create web-notifier
+    docker stop web-notifier || true && docker rm web-notifier || true
+    docker pull avljenkins/web-notifier:stage-2.8.15:latest
    docker container run \
-  -d \
-  -p 12154:12151 \
-  --network web-notifier \
-  -e AFAQY_SOLUTION=airport_taxi \
-  --restart unless-stopped \
-  --name taxi-web-notifier \
-  -v /afaqylogs/avlservice/taxi-web-notifier:/workdir/logs \
-  avljenkins/web-notifier:latest
+    -d \
+    --network web-notifier \
+    -p 12151:12151 -p 12152:12152 -p 12153:12153 \
+    --restart unless-stopped \
+    --name web-notifier \
+    -v /afaqylogs/avlservice/web-notifier:/workdir/logs \
+    afaqyco/avl-web-notifier:stage-2.8.15:latest &&
     exit
     EOF"""
 }
