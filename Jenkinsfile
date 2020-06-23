@@ -29,7 +29,7 @@ options {
 		
                 script { 
                    docker.withRegistry('https://registry.hub.docker.com', 'hub') {
-                        app.push("${DOCKER_IMAGE_NAME}")
+                        app.push("")
                         app.push("latest")
                    
 				   }
@@ -42,7 +42,7 @@ options {
                 script { 
 		 
 	            docker.withRegistry('https://hub.eg.afaqy.co', 'afaqy-hub' ) {
-			    def customImage = docker.build("${AFAQY_IMAGE_NAME}:${env.BUILD_ID}-latest")	 
+			    def customImage = docker.build("${AFAQY_IMAGE_NAME}:latest")	 
 			   customImage.push()
                     
                    
@@ -58,8 +58,7 @@ options {
 {
     sh """ssh -tt ahmed@192.168.40.165  << EOF 
     docker stop web-notifier || true && docker rm web-notifier || true
-    docker pull avljenkins/web-notifier-
-    stage-2.8.15:latest
+    docker pull avljenkins/web-notifier-stage-2.8.15:latest
    docker container run \
     -d \
     --network web-notifier \
