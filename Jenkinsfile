@@ -66,7 +66,7 @@ options {
     --restart unless-stopped \
     --name web-notifier \
     -v /afaqylogs/avlservice/web-notifier:/workdir/logs \
-    afaqyco/avl-web-notifier:stage-2.8.15:latest &&
+    afaqyco/avl-web-notifier:stage-2.8.15:latest 
     exit
     EOF"""
 }
@@ -75,8 +75,8 @@ options {
       post {
         success {
           emailext(
-            subject: "${env.JOB_NAME} [${env.BUILD_NUMBER}] Development Promoted to Master",
-            body: """<p>'${env.JOB_NAME} [${env.BUILD_NUMBER}]' Development Promoted to Master":</p>
+            subject: "${env.JOB_NAME} [${env.BUILD_NUMBER}] Deployment to Stage",
+            body: """<p>'${env.JOB_NAME} [${env.BUILD_NUMBER}]'  Deployment to Stage":</p>
             <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
             to: "ahmedaly@afaqy.com"
           )
