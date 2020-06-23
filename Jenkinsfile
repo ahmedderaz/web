@@ -65,8 +65,7 @@ options {
     -p 12151:12151 -p 12152:12152 -p 12153:12153 \
     --restart unless-stopped \
     --name web-notifier \
-    -v /afaqylogs/avlservice/web-notifier:/workdir/logs \
-    afaqyco/avl-web-notifier:stage-2.8.15:latest 
+    -v /afaqylogs/avlservice/web-notifier:/workdir/logs  afaqyco/avl-web-notifier-stage-2.8.15:latest 
     exit
     EOF"""
 }
