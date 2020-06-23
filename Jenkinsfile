@@ -14,7 +14,7 @@ options {
      stage('Build Docker Image') {
             
             steps {
-		  sh 'mvn clean -Dmaven.javadoc.skip=true verify compile package install '  
+		  sh 'mvn clean -Dmaven.javadoc.skip=true verify compile package install --also-make -Denvironment=stage -Drevision=2.8.15-stage'  
 		  sh 'cp docker/stage/Dockerfile .'
 		    script {
                     app = docker.build(DOCKER_IMAGE_NAME) 
