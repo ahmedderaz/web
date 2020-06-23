@@ -6,7 +6,7 @@ options {
 
   environment {
     MAJOR_VERSION = 1
-	 DOCKER_IMAGE_NAME = "avljenkins/web-notifier:stage-2.8.15"
+	 DOCKER_IMAGE_NAME = "avljenkins/web-notifier-stage-2.8.15"
 	  AFAQY_IMAGE_NAME = "hub.eg.afaqy.co/java/web-notifier"
   }
 
@@ -29,7 +29,7 @@ options {
 		
                 script { 
                    docker.withRegistry('https://registry.hub.docker.com', 'hub') {
-                        app.push("${env.BUILD_NUMBER}")
+                        app.push("${DOCKER_IMAGE_NAME}")
                         app.push("latest")
                    
 				   }
@@ -58,7 +58,8 @@ options {
 {
     sh """ssh -tt ahmed@192.168.40.165  << EOF 
     docker stop web-notifier || true && docker rm web-notifier || true
-    docker pull avljenkins/web-notifier:stage-2.8.15:latest
+    docker pull avljenkins/web-notifier-
+    stage-2.8.15:latest
    docker container run \
     -d \
     --network web-notifier \
