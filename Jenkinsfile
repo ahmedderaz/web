@@ -59,6 +59,7 @@ options {
    docker.withRegistry('https://registry.hub.docker.com', 'hub') {	
     sh """ssh -tt ahmed@192.168.40.165  << EOF 
     docker stop web-notifier || true && docker rm web-notifier || true
+    docker info
     docker pull afaqyco/web-notifier-stage-2.8.15:latest
    docker container run \
     -d \
