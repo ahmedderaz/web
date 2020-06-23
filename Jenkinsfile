@@ -5,7 +5,7 @@ options {
 	} 
 
   environment {
-    MAJOR_VERSION = 1
+    
 	 DOCKER_IMAGE_NAME = "avljenkins/web-notifier-stage-2.8.15"
 	  AFAQY_IMAGE_NAME = "hub.eg.afaqy.co/java/web-notifier"
   }
@@ -29,7 +29,7 @@ options {
 		
                 script { 
                    docker.withRegistry('https://registry.hub.docker.com', 'hub') {
-                        app.push("")
+                        app.push()
                         app.push("latest")
                    
 				   }
