@@ -66,6 +66,7 @@ options {
     --restart unless-stopped \
     --name web-notifier \
     -v /afaqylogs/avlservice/web-notifier:/workdir/logs  avljenkins/web-notifier-stage-2.8.15:latest 
+    echo "web-notifier service is up and running"
     exit
     EOF"""
 }
