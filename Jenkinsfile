@@ -7,7 +7,7 @@ options {
   environment {
     
 	 DOCKER_IMAGE_NAME = "avljenkins/web-notifier-stage-2.8.15"
-	  AFAQY_IMAGE_NAME = "hub.eg.afaqy.co/java/web-notifier"
+	  AFAQY_IMAGE_NAME = "docker.afaqy.sa/java/web-notifier"
   }
 
   stages {
@@ -41,7 +41,7 @@ options {
             steps {
                 script { 
 		 
-	            docker.withRegistry('https://hub.eg.afaqy.co', 'afaqy-hub' ) {
+	            docker.withRegistry('https://docker.afaqy.sa', 'afaqy-hub' ) {
 			    def customImage = docker.build("${AFAQY_IMAGE_NAME}:latest")	 
 			   customImage.push()
                     
