@@ -29,8 +29,8 @@ options {
 		
                 script { 
                    docker.withRegistry('https://registry.hub.docker.com', 'hub') {
-                        def DockerImage = docker.build("${DOCKER_IMAGE_NAME}:latest")
-                        DockerImage.push("latest")
+                        def hubImage = docker.build("${DOCKER_IMAGE_NAME}:latest")
+                        hubImage.push()
                    
 				   }
                 }
