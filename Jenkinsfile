@@ -6,7 +6,7 @@ options {
 
   environment {
     
-	 DOCKER_IMAGE_NAME = "afaqyco/web-notifier-stage-2.8.15"
+	 DOCKER_IMAGE_NAME = "avljenkins/web-notifier-stage-2.8.15"
 	  AFAQY_IMAGE_NAME = "docker.afaqy.sa/java/web-notifier"
   }
 
