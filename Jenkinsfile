@@ -17,8 +17,8 @@ options {
 		  sh 'mvn clean -Dmaven.javadoc.skip=true verify compile package install --also-make -Denvironment=stage -Drevision=2.8.15-stage'  
 		  sh 'cp docker/stage/Dockerfile .'
 		    script {
-                    app = docker.build(DOCKER_IMAGE_NAME) 
-	            img = docker.build(AFAQY_IMAGE_NAME)		    
+                    //app = docker.build(DOCKER_IMAGE_NAME) 
+	            //img = docker.build(AFAQY_IMAGE_NAME)		    
                 
             }
 	    }		    
@@ -29,8 +29,8 @@ options {
 		
                 script { 
                    docker.withRegistry('https://registry.hub.docker.com', 'hub') {
-                        app.push()
-                        app.push("latest")
+                        def DockerImage = docker.build("${DOCKER_IMAGE_NAME}:latest")
+                        DockerImage.push("latest")
                    
 				   }
                 }
@@ -42,8 +42,8 @@ options {
                 script { 
 		 
 	            docker.withRegistry('https://docker.afaqy.sa', 'afaqy-hub' ) {
-			    def customImage = docker.build("${AFAQY_IMAGE_NAME}:latest")	 
-			   customImage.push()
+			    def AfaqyImage = docker.build("${AFAQY_IMAGE_NAME}:latest")	 
+			   AfaqyImage.push()
                     
                    
 				   }
