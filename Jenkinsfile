@@ -16,11 +16,11 @@ options {
             steps {
 		  sh 'mvn clean -Dmaven.javadoc.skip=true verify compile package install --also-make -Denvironment=stage -Drevision=2.8.15-stage'  
 		  sh 'cp docker/stage/Dockerfile .'
-		    script {
+		 //   script {
                     //app = docker.build(DOCKER_IMAGE_NAME) 
 	            //img = docker.build(AFAQY_IMAGE_NAME)		    
                 
-            }
+          //  }
 	    }		    
         }
     stage('Push Docker Image') {
