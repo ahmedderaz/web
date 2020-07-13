@@ -6,7 +6,7 @@ options {
 
   environment {
     
-	 DOCKER_IMAGE_NAME = "avljenkins/web-notifier-stage-2.8.15"
+	 DOCKER_IMAGE_NAME = "afaqyco/avl-web-notifier-stage-2.8.15"
 	  AFAQY_IMAGE_NAME = "docker.afaqy.sa/java/web-notifier"
   }
 
@@ -60,14 +60,14 @@ options {
     sh """ssh -tt ahmed@192.168.40.165  << EOF 
     docker stop web-notifier || true && docker rm web-notifier || true
     docker info
-    docker pull afaqyco/web-notifier-stage-2.8.15:latest
+    docker pull afaqyco/avl-web-notifier-stage-2.8.15:latest
    docker container run \
     -d \
     --network web-notifier \
     -p 12151:12151 -p 12152:12152 -p 12153:12153 \
     --restart unless-stopped \
     --name web-notifier \
-    -v /afaqylogs/avlservice/web-notifier:/workdir/logs -v /var/run/docker.sock:/var/run/docker.sock avljenkins/web-notifier-stage-2.8.15:latest 
+    -v /afaqylogs/avlservice/web-notifier:/workdir/logs -v /var/run/docker.sock:/var/run/docker.sock afaqyco/avl-web-notifier-stage-2.8.15:latest 
     echo "web-notifier service is up and running"
     exit
     EOF"""
