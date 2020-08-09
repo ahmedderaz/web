@@ -56,8 +56,8 @@ options {
       steps {
         script 
 {
-   docker.withRegistry('https://registry.hub.docker.com', 'hub') {	
-    sh """ssh -tt ahmed@192.168.40.165  << EOF 
+   docker.withRegistry('https://docker.afaqy.sa', 'afaqy-hub') {	
+    sh """ssh -tt jenkins@10.10.23.114  << EOF 
     docker stop web-notifier || true && docker rm web-notifier || true
     docker info
     docker pull afaqyco/avl-web-notifier-stage-2.8.15:latest
@@ -67,7 +67,7 @@ options {
     -p 12151:12151 -p 12152:12152 -p 12153:12153 \
     --restart unless-stopped \
     --name web-notifier \
-    -v /afaqylogs/avlservice/web-notifier:/workdir/logs -v /var/run/docker.sock:/var/run/docker.sock afaqyco/avl-web-notifier-stage-2.8.15:latest 
+    -v /afaqylogs/avlservice/web-notifier:/workdir/logs -v /var/run/docker.sock:/var/run/docker.sock docker.afaqy.sa/java/avl-web-notifier-stage-2.8.15:latest 
     echo "web-notifier service is up and running"
     exit
     EOF"""
