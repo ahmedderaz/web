@@ -23,7 +23,7 @@ options {
           //  }
 	    }		    
         }
-   stage('Push Docker Image') {
+ /*  stage('Push Docker Image') {
             
            steps {
 		
@@ -35,7 +35,7 @@ options {
 				   }
                }
            }
-        }
+        } */
 	  stage('Push Afaqy Image') {
             
             steps {
