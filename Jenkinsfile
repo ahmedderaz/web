@@ -46,7 +46,7 @@ options {
 			    def AfaqyImage = docker.build("${AFAQY_IMAGE_NAME}")	
 			 
 			   AfaqyImage.push()
-			    def qc = docker.build("${Afaqy_image_qc}")
+			    def qc = docker.build("${Afaqy_image_qc}:stage-latest")
 	                      qc.push()
                    
 				   }
