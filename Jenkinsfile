@@ -7,8 +7,8 @@ options {
   environment {
     
 	 DOCKER_IMAGE_NAME = "afaqyco/avl-web-notifier-stage-2.8.15"
-	  AFAQY_IMAGE_NAME = "docker.afaqy.sa/test/avl-web-notifier:stage-2.14.25"
-	  Afaqy_image_qc =  "docker.afaqy.sa/test/avl-web-notifier"
+	  AFAQY_IMAGE_NAME = "docker.afaqy.sa/java/avl-web-notifier:stage-2.14.25"
+	  Afaqy_image_qc =  "docker.afaqy.sa/java/avl-web-notifier"
   }
 
   stages {
