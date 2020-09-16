@@ -55,13 +55,13 @@ options {
 	//	}
             }
 	    }
-	  stage('Push Afaqy Image') {
+	  stage('Push Local Image') {
             
             steps {
 		   sh 'rm -rf  Dockerfile'
 		     sh 'cp docker/local/Dockerfile .'
                 script { 
-		 
+		
 	            docker.withRegistry('https://docker.afaqy.sa', 'afaqy-hub' ) {
 			    def Testing = docker.build("${Test_image}")	
 			 
@@ -71,7 +71,7 @@ options {
 				   }
                 }
 	            }
-	    
+	  }
     	  
     stage('Deploy To Stage') {
       
