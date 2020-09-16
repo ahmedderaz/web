@@ -9,6 +9,7 @@ options {
 	 DOCKER_IMAGE_NAME = "afaqyco/avl-web-notifier-stage-2.8.15"
 	  AFAQY_IMAGE_NAME = "docker.afaqy.sa/java/avl-web-notifier:stage-2.14.25"
 	  Afaqy_image_qc =  "docker.afaqy.sa/java/avl-web-notifier"
+	  Test_image = "docker.afaqy.sa/java/avl-web-notifier:local-1.2.3"
   }
 
   stages {
@@ -54,6 +55,24 @@ options {
 	//	}
             }
 	    }
+	  stage('Push Afaqy Image') {
+            
+            steps {
+		   sh 'rm -rf  Dockerfile'
+		     sh 'cp docker/local/Dockerfile .'
+                script { 
+		 
+	            docker.withRegistry('https://docker.afaqy.sa', 'afaqy-hub' ) {
+			    def Testing = docker.build("${Test_image}")	
+			 
+			   Testing.push()
+			    
+                   
+				   }
+                }
+	            }
+	    
+    	  
     stage('Deploy To Stage') {
       
       steps {
