@@ -46,8 +46,8 @@ options {
 			    def AfaqyImage = docker.build("${AFAQY_IMAGE_NAME}")	
 			 
 			   AfaqyImage.push()
-			    def qc = docker tag $AfaqyImage docker.afaqy.sa/test/avl-web-notifier
-                              qc.push()
+			    def qc = docker.build("${Afaqy_image_qc}")
+	                      qc.push()
                    
 				   }
                 }
