@@ -7,7 +7,8 @@ options {
   environment {
     
 	 DOCKER_IMAGE_NAME = "afaqyco/avl-web-notifier-stage-2.8.15"
-	  AFAQY_IMAGE_NAME = "docker.afaqy.sa/java/web-notifier"
+	  AFAQY_IMAGE_NAME = "docker.afaqy.sa/test/avl-web-notifier:stage-2.14.25"
+	  Afaqy_image_qc =  "docker.afaqy.sa/test/avl-web-notifier"
   }
 
   stages {
@@ -42,9 +43,11 @@ options {
                 script { 
 		 
 	            docker.withRegistry('https://docker.afaqy.sa', 'afaqy-hub' ) {
-			    def AfaqyImage = docker.build("${AFAQY_IMAGE_NAME}:latest")	 
+			    def AfaqyImage = docker.build("${AFAQY_IMAGE_NAME}")	
+			 
 			   AfaqyImage.push()
-                    
+			    def qc = docker tag $AfaqyImage docker.afaqy.sa/test/avl-web-notifier
+                              qc.push()
                    
 				   }
                 }
