@@ -30,7 +30,7 @@ options {
            steps {
 		
               script { 
-                   docker.withRegistry('https://registry.hub.docker.com', 'hub') {
+                   docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
                        def hubImage = docker.build("${DOCKER_IMAGE_NAME}:latest")
                       hubImage.push()
                    
