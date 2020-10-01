@@ -61,7 +61,7 @@ pipeline {
       steps {
         script{
            docker.withRegistry('https://docker.afaqy.sa', 'afaqy-hub') {
-            sh """ssh -p 11207 -o stricthostkeychecking=no jenkins@10.10.23.114  << EOF
+            sh '''ssh -p 11207 -o stricthostkeychecking=no jenkins@10.10.23.114  << EOF
             yes |docker system prune
             docker stop avl-web-notifier  && docker rename avl-web-notifier avl-web-notifier.old 
             docker pull docker.afaqy.sa/java/avl-web-notifier:stage-2.14.29
@@ -77,7 +77,7 @@ pipeline {
                     ( docker rename  avl-web-notifier.old  avl-web-notifier && docker start  avl-web-notifier )
             fi
             exit
-            EOF"""
+            EOF'''
         }
       }
     }
