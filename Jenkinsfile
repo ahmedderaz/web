@@ -7,7 +7,7 @@ agent any
   stages {
 stage("Deploy to Devlopment"){
 when {
-    branch 'dev'
+    branch 'stage'
 }
  steps {
      
