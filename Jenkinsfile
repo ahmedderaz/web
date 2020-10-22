@@ -9,7 +9,7 @@ stage("Deploy to Devlopment"){
 
  steps {
        sh 'cp ../script/dev.sh .'
-	 sh './dev.sh ${env.BUILD_NUMBER}'
+	 sh "./dev.sh ${env.BUILD_NUMBER}"
 	 }
          }
             }
