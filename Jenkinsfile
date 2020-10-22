@@ -11,7 +11,7 @@ stage("Deploy to Devlopment"){
        sh 'echo Ahmed'
 	 sh "zip -r api_S1.${env.BUILD_NUMBER}.zip * .[^.]*"
 	 script {
-        sh 'cat api_S1.${env.BUILD_NUMBER}.zip >a.txt |xargs -i scp  -p 2121 -o stricthostkeychecking=no  ahmed@192.168.40.165:/home/ahmed/web/'
+        sh "cat api_S1.${env.BUILD_NUMBER}.zip >a.txt |xargs -i scp  -p 2121 -o stricthostkeychecking=no  ahmed@192.168.40.165:/home/ahmed/web/"
          sh 'ssh -P 2121 -o stricthostkeychecking=no "./home/ahmed/web/jenkins_api_script.s" "${env.BUILD_NUMBER}"'
 	 }
          }
