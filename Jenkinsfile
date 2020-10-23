@@ -10,11 +10,11 @@ stage("Deploy to Devlopment"){
  steps {
        sh 'cp ../script/dev.sh .'
 	 sh "./dev.sh ${env.BUILD_NUMBER}"
-	 sh""" ssh -p 2121 -o stricthostkeychecking=no ahmed@192.168.40.165 << EOF
+	 sh''' ssh -p 2121 -o stricthostkeychecking=no ahmed@192.168.40.165 << EOF
 	 echo Hi
-	 ./home/ahmed/web/jenkins_api_script.sh ${env.BUILD_NUMBER}
+	 /home/ahmed/web/jenkins_api_script.sh ${env.BUILD_NUMBER}
 	  
-         EOF"""
+         EOF'''
 	 }
          }
             }
